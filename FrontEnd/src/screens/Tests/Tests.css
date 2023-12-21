@@ -1,0 +1,46 @@
+/* YourComponent.css or any relevant CSS file */
+.contentTests {
+  display: flex;
+}
+
+.mySideBareTests {
+  flex: 0 0 20%; /* Set sidebar width to 30% */
+  height: 100vh;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.levelContent {
+  flex: 1; /* Take up remaining space */
+  /* Additional styling for the content if needed */
+}
+
+/* YourComponent.css or any relevant CSS file */
+.contentTests {
+  display: flex;
+}
+
+/* For smaller screens (phones) */
+@media (max-width: 767px) {
+  .mySideBareTests {
+    flex: 0 0 100%; /* Set sidebar width to 50% for phones */
+    height: 100vh;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+  }
+  .contentTests {
+    flex: 0 0 0%;
+  }
+}
+
+/* For tablets and larger screens */
+@media (min-width: 768px) {
+  .mySideBareTests {
+    flex: 0 0 25%; /* Set sidebar width to 35% for tablets */
+    height: 100vh;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.levelContent {
+  flex: 1; /* Take up remaining space */
+  /* Additional styling for the content if needed */
+}
