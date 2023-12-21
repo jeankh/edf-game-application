@@ -1,0 +1,43 @@
+.myFooter {
+  /* background-color: bisque; */
+  margin-top: auto !important;
+  /* box-shadow: inset 0px 8px 6px -6px #c0b2b2; */
+  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px; */
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  color: var(--TextDarkGrayColor);
+
+  padding: var(--sectionsPaddingTop) var(--paddingLeftRight);
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  text-align: center;
+}
+
+.myFooterDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
+.socialMediaIds a {
+  padding: 0rem 1rem;
+}
+
+.socialMediaIds a:hover {
+  color: var(--BlueColor);
+  cursor: pointer;
+}
+
+.myFooter a {
+  color: var(--TextDarkGrayColor);
+}
+
+@media screen and (max-width: 768px) {
+  .myFooterDiv {
+    flex-wrap: wrap;
+  }
+
+  .myFooterDiv div {
+    width: 100%;
+  }
+}
