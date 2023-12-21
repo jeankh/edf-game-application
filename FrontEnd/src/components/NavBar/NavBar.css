@@ -1,0 +1,103 @@
+.MyNav {
+  height: 50px;
+  width: 100%;
+  background-color: #4d4d4d;
+  position: relative;
+}
+
+.MyNav > .MyNav-links > a {
+  display: inline-block;
+  padding: 13px 10px;
+  color: #efefef;
+  text-decoration: none; /* Remove the default underline */
+}
+
+.MyNav-title a {
+  display: inline-block;
+  color: #efefef;
+  text-decoration: none; /* Remove the default underline */
+}
+
+.MyNav > .MyNav-header {
+  display: inline;
+}
+
+.MyNav > .MyNav-header > .MyNav-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px;
+}
+
+.MyNav > .MyNav-btn {
+  display: none;
+}
+
+.MyNav > .MyNav-links {
+  display: inline;
+  float: right;
+  font-size: 18px;
+}
+
+.MyNav > .MyNav-links > a {
+  display: inline-block;
+  padding: 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.MyNav > .MyNav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.MyNav > #MyNav-check {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .MyNav > .MyNav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .MyNav > .MyNav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .MyNav > .MyNav-btn > label:hover,
+  .MyNav #MyNav-check:checked ~ .MyNav-btn > label {
+    background-color: transparent;
+  }
+  .MyNav > .MyNav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .MyNav > .MyNav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: auto; /* Change height to auto for mobile */
+    max-height: 50vh; /* Set a maximum height of 50% of the viewport */
+    transition: all 0.3s ease-in;
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    top: 50px;
+    left: 0;
+  }
+  .MyNav > .MyNav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .MyNav > #MyNav-check:not(:checked) ~ .MyNav-links {
+    height: 0;
+  }
+  .MyNav > #MyNav-check:checked ~ .MyNav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
