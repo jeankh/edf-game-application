@@ -8,7 +8,7 @@ import {
 } from "../../components/index";
 
 const Tests: React.FC<TestsProps> = (props) => {
-  const { ShowLevelsTitles } = useTests(props);
+  const { ShowLevelsTitles, handleSaveSituation, data } = useTests(props);
 
   return (
     <>
@@ -24,6 +24,24 @@ const Tests: React.FC<TestsProps> = (props) => {
         )}
 
         <div className="levelContent">
+          <button
+            onClick={() =>
+              handleSaveSituation(data[0], data[0].first_choice_electric_charge)
+            }
+          >
+            test
+          </button>
+
+          <button
+            onClick={() =>
+              handleSaveSituation(
+                data[1],
+                data[1].second_choice_electric_charge
+              )
+            }
+          >
+            test
+          </button>
           <LevelContent />
         </div>
       </div>
