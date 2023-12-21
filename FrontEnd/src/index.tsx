@@ -1,21 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ContextProvider } from './contexts/ContextProvider';
+// index.tsx
+import React from "react";
+import ReactDOM from "react-dom";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ContextProvider } from "./contexts/ContextProvider";
+import { Provider } from "react-redux";
+import store from "./store";
+
+ReactDOM.render(
   <React.StrictMode>
-       <ContextProvider>
-       <App />
-
-       </ContextProvider>
-  
-  </React.StrictMode>
+    <Provider store={store}>
+      <ContextProvider>
+        <App />
+      </ContextProvider>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 reportWebVitals();
