@@ -1,10 +1,17 @@
-import React from 'react'
-import './Choice.css'
+import React from 'react';
+import './Choice.css';
 
-function Choice({choice}: {choice: any}) {
-  return (
-    <div className='choice'>{choice}</div>
-  )
+interface ChoiceProps {
+  choice: any;
+  handleClick: (choice: any) => void;
 }
 
-export default Choice
+function Choice({ choice, handleClick }: ChoiceProps) {
+  return (
+    <div className='choice' onClick={() => handleClick(choice)}>
+      {choice}
+    </div>
+  );
+}
+
+export default Choice;

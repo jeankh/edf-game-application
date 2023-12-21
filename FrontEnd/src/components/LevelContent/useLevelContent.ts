@@ -14,6 +14,7 @@ export const useLevelContent = (props: LevelContentProps) => {
     seconde_choice_electric_charge: 2,
     third_choice: "Me rendormir ",
     third_choice_electric_charge: 3,
+    advice: "Conseil adkjksadnkjsandsakdnsakjda,dnsakjdnlsadsk.j",
   };
 
     
