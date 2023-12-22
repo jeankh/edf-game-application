@@ -23,7 +23,12 @@ const HeaderSection: React.FC<HeaderSectionProps> = (props) => {
           </span>
           <span className="TitleHeadSectiontext">
             {" "}
-            {level} - level {level}{" "}
+            {!(data.length + 1 === level) && (
+              <>
+                {level} - level {level}{" "}
+              </>
+            )}
+            {data.length + 1 === level && <>{level} - total Electric Charge</>}
           </span>
         </div>
       </div>

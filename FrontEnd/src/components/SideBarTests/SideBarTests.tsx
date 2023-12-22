@@ -65,7 +65,7 @@ const SideBarTests: React.FC<SideBarTestsProps> = (props) => {
         }`}
       >
         <span className="Section-number">0{data.length + 1}</span>
-        <span className="Section-title">Certification</span>
+        <span className="Section-title">Total Electric Charge</span>
         <div className="vlSection " style={{ visibility: "hidden" }}></div>
       </div>
     </div>

@@ -1,26 +1,35 @@
+import { useDispatch, useSelector } from "react-redux";
 import { SavedSituation } from "../../reducers/Ducks/situationDukck";
+import { RootState } from "../../reducers/rootReducer";
+import { update } from "../../reducers/Ducks/certificationDukck";
+import { useEffect } from "react";
 
 export interface CertificateProps {
   situations?: SavedSituation[];
 }
 
 export const useCertificate = (props: CertificateProps) => {
-  const { situations } = props; // Destructure situations from props
-
+  const { situations } = props;
+  const user = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
   let totalElectricCharge = 0;
 
-  if (situations ) {
-    console.log("I am in the certificate function.");
+  if (situations) {
+    // console.log("I am in the certificate function.");
 
     // Extracting electric charges from situations
     const electricCharges: number[] = situations.map((situation) => situation.electric_charge);
 
     // Calculating total electric charge
-     totalElectricCharge  = electricCharges.reduce((total, charge) => total + charge, 0);
-
-    // console.log("Total Electric Charge:", totalElectricCharge);
+    totalElectricCharge = electricCharges.reduce((total, charge) => total + charge, 0);
   }
 
-  // Return the props or other values as needed
-  return { ...props , totalElectricCharge };
+  useEffect(() => {
+    if (totalElectricCharge !== 0) {
+      // console.log("Dispatching update action...");
+      dispatch(update('score', totalElectricCharge));
+    }
+  }, [dispatch, totalElectricCharge]);
+
+  return { ...props, totalElectricCharge };
 };
