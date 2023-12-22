@@ -8,20 +8,20 @@ import {data} from '../../assets/dummyData'
 
 import { useSelector } from 'react-redux';
 import { getData } from "../../services/sections/getSituation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const useTests= (props: TestsProps) => {
 // id !Data then get 
 // get data  
 
-let MyData = data
+const [MyData, setMyData] = useState(data);
 useEffect(() => {
   async function fetchData() {
     try {
       // Adjust your-endpoint
       const data = await getData('situations'); 
       console.log('Data:', data);
-      MyData=data
+      setMyData(data);
       // Handle the received data as needed
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -29,7 +29,7 @@ useEffect(() => {
   }
 
   fetchData();
-}, []); // Empty dependency array to run this effect only once
+}, [MyData,data]); // Empty dependency array to run this effect only once
 
 
   const situations = useSelector((state: RootState) => state.situations);
