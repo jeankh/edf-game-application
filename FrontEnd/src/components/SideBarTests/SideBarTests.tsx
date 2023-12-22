@@ -3,61 +3,70 @@ import { SideBarTestsProps, useSideBarTests } from "./useSideBarTests";
 import "./SideBarTests.css";
 
 const SideBarTests: React.FC<SideBarTestsProps> = (props) => {
-  const {} = useSideBarTests(props);
+  const { data, situations, level } = useSideBarTests(props);
+
+  const isSectionActive = (id: number) => {
+    return situations.some((situation) => situation.id_situation === id);
+  };
+
+  const isSectionDone = (id: number) => {
+    return situations.some(
+      (situation) =>
+        situation.id_situation === id &&
+        data.find((item) => item.id_situation === id)?.right_answer ===
+          situation.choice
+    );
+  };
+
+  const renderSections = () => {
+    return data.map((section) => {
+      const sectionId = `Section-${section.id_situation}`;
+      const isActive = isSectionActive(section.id_situation);
+      const isDone = isSectionDone(section.id_situation);
+
+      let sectionClasses = "Sectiondiv Section";
+      if (isActive) sectionClasses += " Section-active";
+      if (isDone) sectionClasses += " Section-IsDone";
+      else sectionClasses += " Section-NotReady";
+
+      return (
+        <div key={sectionId} id={sectionId} className={sectionClasses}>
+          <div>
+            <span className="Section-number" id="Section-number">
+              {section.id_situation.toString().padStart(2, "0")}
+            </span>
+            <span className="Section-title">Test {section.category}</span>
+            {isDone && (
+              <span className="Section-IsDoneIcon">
+                {/* Your SVG icon for a done section */}
+              </span>
+            )}
+          </div>
+          <div className="vlSection"></div>
+        </div>
+      );
+    });
+  };
+
+  const isCertificationActive = () => {
+    if (data.length + 1 === level) {
+      return true;
+    }
+    return false; // Return false if situations array is empty
+  };
 
   return (
     <div className="sidebarSection">
+      {renderSections()}
       <div
-        id="Section-1"
-        className="Sectiondiv Section Section-Ready Section-IsDone"
+        id="Section-Certification"
+        className={`Sectiondiv Section ${
+          isCertificationActive() ? "Section-active" : "Section-NotReady"
+        }`}
       >
-        <div>
-          <span className="Section-number">01</span>
-          <span className="Section-title">Introduction</span>
-          <span className="Section-IsDoneIcon">
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth="0"
-              viewBox="0 0 512 512"
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            ></svg>
-          </span>
-        </div>
-        <div className="vlSection"></div>
-      </div>
-
-      <div
-        id="Section-2"
-        className="Sectiondiv Section Section-active Section-Ready"
-      >
-        <div>
-          <span className="Section-number">02</span>
-          <span className="Section-title">Artist Royalties</span>
-        </div>
-        <div className="vlSection"></div>
-      </div>
-
-      <div id="Section-3" className="Sectiondiv Section Section-NotReady">
-        <div>
-          <span className="Section-number">03</span>
-          <span className="Section-title">The Glossary</span>
-        </div>
-        <div className="vlSection"></div>
-      </div>
-
-      <div id="Section-1000" className="Sectiondiv Section Section-NotReady">
-        <span className="Section-number">04</span>
-        <span className="Section-title">What's next</span>
-        <div className="vlSection"></div>
-      </div>
-
-      <div id="Section-1001" className="Sectiondiv Section Section-NotReady">
-        <span className="Section-number">05</span>
+        <span className="Section-number">0{data.length + 1}</span>
         <span className="Section-title">Certification</span>
-        {/* <div className="vlSection visibility-hidden"></div> */}
+        <div className="vlSection " style={{ visibility: "hidden" }}></div>
       </div>
     </div>
   );

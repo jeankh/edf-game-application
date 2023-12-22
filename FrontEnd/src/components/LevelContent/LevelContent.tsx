@@ -1,10 +1,11 @@
 import { LevelContentProps, useLevelContent } from "./useLevelContent";
 import React from "react";
 import "./LevelContent.css";
-import Round from "../Round";
+import Round from "../Round/Round";
 
 const LevelContent: React.FC<LevelContentProps> = (props) => {
-  const { situation } = useLevelContent(props);
+  const { data, situations, level } = useLevelContent(props);
+  const situation = data[level - 1] || data[situations.length];
 
   return (
     <>

@@ -5,6 +5,8 @@ type voidFC = () => void;
 interface StateContextProps {
   handleShowLevelsTitles: voidFC;
   ShowLevelsTitles: boolean;
+  handleLevel: voidFC;
+  level: number;
 }
 
 const StateContext = createContext<StateContextProps | undefined>(undefined);
@@ -17,6 +19,11 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
   children,
 }) => {
   const [ShowLevelsTitles, setShowLevelsTitles] = useState(true);
+  const [level, setLevel] = useState(1);
+
+  const handleLevel = () => {
+    setLevel(level + 1);
+  };
 
   const handleShowLevelsTitles = () => {
     setShowLevelsTitles(!ShowLevelsTitles);
@@ -25,6 +32,8 @@ export const ContextProvider: React.FC<ContextProviderProps> = ({
   const contextValue: StateContextProps = {
     ShowLevelsTitles,
     handleShowLevelsTitles,
+    level,
+    handleLevel,
   };
 
   return (

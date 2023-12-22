@@ -1,35 +1,34 @@
-
-
-import { HeaderSectionProps, useHeaderSection } from './useHeaderSection'; 
-import React from 'react';
+import { HeaderSectionProps, useHeaderSection } from "./useHeaderSection";
+import React from "react";
 import { FaBars } from "react-icons/fa";
-import "./HeaderSection.css"
+import "./HeaderSection.css";
 
 const HeaderSection: React.FC<HeaderSectionProps> = (props) => {
+  const { handleShowLevelsTitles, data, situations, level } =
+    useHeaderSection(props);
 
-    const {handleShowLevelsTitles} = useHeaderSection(props)
-
-    return (
-
+  return (
     <>
-        <div className='HeaderSection'>
-            <div className='SectionTitleCourse' >
-              Title  
-            </div>
-         
-            <div className='TitleSectionHead'>
-                <span className='IconSection'
-                 onClick={handleShowLevelsTitles}
-                 >
-                      <FaBars /> </span>
-                <span className='TitleHeadSectiontext'> 1 - level 1  </span>
-
-
-            </div>
+      <div className="HeaderSection">
+        <div className="SectionTitleCourse">
+          {data.length + 1 === level && <> certificate</>}
+          {data.length + 1 !== level && (
+            <>{data[level - 1].category || data[0].category}</>
+          )}
         </div>
-    </>
-  
-    )
-}
 
-export default HeaderSection
+        <div className="TitleSectionHead">
+          <span className="IconSection" onClick={handleShowLevelsTitles}>
+            <FaBars />{" "}
+          </span>
+          <span className="TitleHeadSectiontext">
+            {" "}
+            {level} - level {level}{" "}
+          </span>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default HeaderSection;
