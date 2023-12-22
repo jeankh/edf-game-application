@@ -4,14 +4,16 @@ import "./Certificat.css";
 import CertificatEnCarton from "../../components/CertificatEnCarton/CertificatEnCarton";
 
 const Certificat: React.FC<CertificatProps> = (props) => {
-  const {} = useCertificat(props);
+  const { user } = useCertificat(props);
 
   return (
     <>
-      <p>text Certificat </p>
-      <CertificatEnCarton />
-
-      <> btn dounload </>
+      <div className="Titlecerti">
+        Your certificate is accessible through the link provided in your email.
+        We have sent you an email containing the necessary details. Please check
+        your inbox and follow the instructions to access your certificate{" "}
+      </div>
+      <CertificatEnCarton certificatInfo={user} />
     </>
   );
 };
