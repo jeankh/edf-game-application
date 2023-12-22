@@ -6,10 +6,10 @@ import {
   SideBarTests,
   LevelContent,
 } from "../../components/index";
+import Certificate from "../../components/Certificate/Certificate";
 
 const Tests: React.FC<TestsProps> = (props) => {
-  const { ShowLevelsTitles, handleSaveSituation, data, situations, level } =
-    useTests(props);
+  const { ShowLevelsTitles, data, situations, level } = useTests(props);
 
   return (
     <>
@@ -25,7 +25,7 @@ const Tests: React.FC<TestsProps> = (props) => {
         )}
 
         <div className="levelContent">
-          {data.length + 1 === level && <> certificate</>}
+          {data.length + 1 === level && <Certificate situations={situations} />}
           {data.length + 1 !== level && (
             <>
               <LevelContent data={data} situations={situations} />

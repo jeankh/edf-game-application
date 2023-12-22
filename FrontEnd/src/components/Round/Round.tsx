@@ -19,11 +19,17 @@ function Round({ situation }: { situation: Situation }) {
   const weCanNext = level === situations.length;
 
   const handleSaveSituation = (
+    id_situation: number,
     choice: string,
     electricChargeCount: number,
-    id_situation: number,
     choiceIndex: number
   ) => {
+    console.log({
+      id_situation,
+      choice,
+      electric_charge: electricChargeCount,
+      next: false,
+    });
     dispatch(
       saveChoice({
         id_situation,
@@ -82,9 +88,10 @@ function Round({ situation }: { situation: Situation }) {
           onClick={() =>
             !disabledChoices &&
             handleSaveSituation(
+              id_situation,
               first_choice,
               first_choice_electric_charge,
-              id_situation,
+
               1
             )
           }
@@ -99,9 +106,10 @@ function Round({ situation }: { situation: Situation }) {
           onClick={() =>
             !disabledChoices &&
             handleSaveSituation(
+              id_situation,
               second_choice,
               second_choice_electric_charge,
-              id_situation,
+
               2
             )
           }
@@ -116,9 +124,10 @@ function Round({ situation }: { situation: Situation }) {
           onClick={() =>
             !disabledChoices &&
             handleSaveSituation(
+              id_situation,
               third_choice,
               third_choice_electric_charge,
-              id_situation,
+
               3
             )
           }

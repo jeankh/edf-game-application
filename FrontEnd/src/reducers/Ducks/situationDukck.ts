@@ -9,9 +9,9 @@ export interface SavedSituation {
   next ?:  boolean
 }
 // action creator
-export const saveChoice = (situation: SavedSituation, electricChargeCount?: number) => ({
+export const saveChoice = (situation: SavedSituation ) => ({
   type: SAVE_CHOICE,
-  payload: { situation, electricChargeCount },
+  payload: { situation },
 });
 // action creator to set next to true
 export const setNextTrue = (id: number) => ({
@@ -25,7 +25,7 @@ const initialState: SavedSituation[] = [];
 const situationsReducer = (state = initialState, action: any): SavedSituation[] => {
   switch (action.type) {
     case SAVE_CHOICE:
-      const { situation, electricChargeCount } = action.payload;
+      const { situation  } = action.payload;
       const existingSituationIndex = state.findIndex(
         (savedSituation) => savedSituation.id_situation === situation.id_situation
       );
@@ -33,11 +33,11 @@ const situationsReducer = (state = initialState, action: any): SavedSituation[] 
       if (existingSituationIndex !== -1) {
         return state.map((savedSituation, index) =>
           index === existingSituationIndex
-            ? { ...savedSituation, choice: situation.choice, electric_charge: electricChargeCount }
+            ? { ...savedSituation, choice: situation.choice, electric_charge: situation.electric_charge }
             : savedSituation
         );
       } else {
-        return [...state, { id_situation: situation.id_situation, choice: situation.choice, electric_charge: electricChargeCount , next : false}];
+        return [...state, { id_situation: situation.id_situation, choice: situation.choice, electric_charge: situation.electric_charge , next : false}];
       }
 
     default:
