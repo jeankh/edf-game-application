@@ -1,20 +1,4 @@
-/* .sidebarRegitser {tion-IsDone
-   
-    padding: 20px;
-    border-radius: 10px;
-    width: 240px;
-    margin-right: 40px;
-    margin-left: 60px;
-    
-  } */
-
-/* .sidebarSection  {
-    box-shadow:  2px 0 4px rgba(0,0,0,0.4);
-
- 
-  } */
-
-.Section-Ready {
+/* .Section-Ready {
   cursor: pointer;
 }
 
@@ -24,7 +8,7 @@
 
 .Section-NotReady {
   cursor: not-allowed;
-}
+} */
 .sidebarSection .Section {
   margin: 0.9rem 1rem;
 
@@ -72,14 +56,27 @@
   color: #35af5f !important;
 }
 
-.sidebarSection .Section.Section-IsDone .Section-number {
+.Section-IsDone .Section-number {
   border-radius: 50%;
   background: #35af5f !important;
   color: #fff;
 }
 
-.sidebarSection .Section.Section-IsDone .vlSection {
+.sidebarSection .Section-active .Section-number {
+  border-radius: 50%;
+  background: #35af5f !important;
+  color: #fff;
+}
+.sidebarSection .Section-active .vlSection {
   border-color: #35af5f !important;
+}
+.sidebarSection .Section-active .Section-title {
+  color: #35af5f !important;
+}
+
+.sidebarSection .Section.Section-IsDone .vlSection {
+  /* border-color: #35af5f !important; */
+  border-color: rgb(255, 190, 88);
 }
 
 .sidebarSection .Section.Section-Ready .Section-title {
@@ -102,6 +99,7 @@
 .sidebarSection .Section-IsDoneIcon {
   /* color: #960c0c; */
   color: #ffbe58;
+  border-color: rgb(255, 190, 88);
   font-size: 1.3rem;
   /* font-size: 1.3rem; */
   font-weight: bold;

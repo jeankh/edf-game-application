@@ -1,15 +1,22 @@
 // action types
 const SAVE_CHOICE = 'SAVE_CHOICE';
+const SET_NEXT_TRUE = 'SET_NEXT_TRUE'; // New action type
 
-interface SavedSituation {
+export interface SavedSituation {
   id_situation: number;
   choice: string;
   electric_charge: number;
+  next ?:  boolean
 }
 // action creator
-export const saveChoice = (situation: SavedSituation, electricChargeCount: number) => ({
+export const saveChoice = (situation: SavedSituation, electricChargeCount?: number) => ({
   type: SAVE_CHOICE,
   payload: { situation, electricChargeCount },
+});
+// action creator to set next to true
+export const setNextTrue = (id: number) => ({
+  type: SET_NEXT_TRUE,
+  payload: { id },
 });
 
 // reducer
@@ -30,7 +37,7 @@ const situationsReducer = (state = initialState, action: any): SavedSituation[] 
             : savedSituation
         );
       } else {
-        return [...state, { id_situation: situation.id_situation, choice: situation.choice, electric_charge: electricChargeCount }];
+        return [...state, { id_situation: situation.id_situation, choice: situation.choice, electric_charge: electricChargeCount , next : false}];
       }
 
     default:

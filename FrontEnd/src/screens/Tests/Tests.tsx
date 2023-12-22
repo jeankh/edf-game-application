@@ -8,41 +8,29 @@ import {
 } from "../../components/index";
 
 const Tests: React.FC<TestsProps> = (props) => {
-  const { ShowLevelsTitles, handleSaveSituation, data } = useTests(props);
+  const { ShowLevelsTitles, handleSaveSituation, data, situations, level } =
+    useTests(props);
 
   return (
     <>
-      <HeaderSection />
+      <HeaderSection data={data} />
 
       <div className="contentTests">
         {ShowLevelsTitles && (
           <>
             <div className="mySideBareTests">
-              <SideBarTests />
+              <SideBarTests data={data} />
             </div>
           </>
         )}
 
         <div className="levelContent">
-          <button
-            onClick={() =>
-              handleSaveSituation(data[0], data[0].first_choice_electric_charge)
-            }
-          >
-            test
-          </button>
-
-          <button
-            onClick={() =>
-              handleSaveSituation(
-                data[1],
-                data[1].second_choice_electric_charge
-              )
-            }
-          >
-            test
-          </button>
-          <LevelContent />
+          {data.length + 1 === level && <> certificate</>}
+          {data.length + 1 !== level && (
+            <>
+              <LevelContent data={data} situations={situations} />
+            </>
+          )}
         </div>
       </div>
     </>
