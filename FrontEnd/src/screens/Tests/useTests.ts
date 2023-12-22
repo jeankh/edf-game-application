@@ -2,16 +2,36 @@ export interface TestsProps {}
 
 import { useStateContext } from "../../contexts/ContextProvider";
 import { useDispatch } from 'react-redux';
-import { saveChoice } from '../../reducers/Ducks/situationDukck';
-import {Situation} from '../../types/models/Situation'
+
 import {RootState} from '../../reducers/rootReducer'
 import {data} from '../../assets/dummyData'
 
 import { useSelector } from 'react-redux';
+import { getData } from "../../services/sections/getSituation";
+import { useEffect } from "react";
 
 export const useTests= (props: TestsProps) => {
 // id !Data then get 
 // get data  
+
+let MyData = data
+useEffect(() => {
+  async function fetchData() {
+    try {
+      // Adjust your-endpoint
+      const data = await getData('situations'); 
+      console.log('Data:', data);
+      MyData=data
+      // Handle the received data as needed
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+  fetchData();
+}, []); // Empty dependency array to run this effect only once
+
+
   const situations = useSelector((state: RootState) => state.situations);
 
   // Now 'situations' holds the data from the Redux store
@@ -23,15 +43,10 @@ export const useTests= (props: TestsProps) => {
 
   console.log(level)
 
-  // const handleSaveSituation = (situation: Situation, electricChargeCount: number) => {
-  //   const { id_situation, second_choice } = situation; 
-  //   dispatch(saveChoice({
-  //     id_situation, choice: second_choice,
-  //     electric_charge: 0 , next : false
-  //   }, electricChargeCount)); 
-  // };
 
-  return { ...props  , ShowLevelsTitles   , data , situations , handleLevel, level } 
+
+  return { ...props, ShowLevelsTitles, data: MyData, situations, handleLevel, level };
+
 }
 
 

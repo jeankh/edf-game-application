@@ -19,6 +19,10 @@ input:-webkit-autofill {
   background-color: transparent !important;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   /* Adjust font size for smaller screens */
   html {

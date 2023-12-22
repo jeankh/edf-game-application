@@ -1,0 +1,30 @@
+.totalElectricCharge .redSpan {
+  color: rgb(247, 1, 1) !important;
+}
+
+.totalElectricCharge {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  align-items: center;
+  width: 90%;
+  min-height: 20vh;
+  border-radius: 15px;
+  margin: auto;
+  padding: 20px 0px;
+}
+
+/* .totalElectricCharge {
+  margin: auto;
+} */
+
+.FormLabel {
+  margin: auto;
+  padding: 20px 20px;
+}
+
+.CertificateFormDiv {
+  width: 80%;
+  margin: auto;
+}
